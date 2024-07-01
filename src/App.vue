@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Medical Chatbot</h1>
+    <h1 class="sticky-header">Medical Chatbot</h1>
     <Chatbot />
   </div>
 </template>
@@ -18,4 +18,15 @@ export default {
 
 <style>
 /* Add your global styles here */
+
+.sticky-header {
+  background-color: #eaedf1;
+  color: #0d0c0c;
+  
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it's above other content */
+}
 </style>
