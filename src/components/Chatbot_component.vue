@@ -93,7 +93,7 @@
   }
   
   .chatbot {
-    max-width: 400px;
+    max-width: 900px;
     width: 100%;
     background-color: #fff;
     border-radius: 8px;
