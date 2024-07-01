@@ -43,6 +43,12 @@
           this.query = ''; // Clear input field after sending query
         } catch (error) {
           console.error('Error:', error);
+          let errorMessage = 'Failed to get response from server. Please try again later.';
+          if (error.response && error.response.data && error.response.data.message) {
+            errorMessage = error.response.data.message;
+          }
+          // Add error message to chat history
+          this.messages.push({ type: 'bot', text: errorMessage });
         }
       }
     }
