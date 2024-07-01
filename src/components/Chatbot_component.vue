@@ -13,6 +13,7 @@
         <div class="chatbot-input">
           <input type="text" v-model="query" placeholder="Enter your medical question" @keyup.enter="sendQuery" class="input-field">
           <button @click="sendQuery" class="ask-button">Ask</button>
+          <div v-if="loading" class="loading-animation"></div>
         </div>
       </div>
     </div>
@@ -25,7 +26,8 @@
     data() {
       return {
         query: '',
-        messages: []
+        messages: [],
+        loading: false // Add loading state
       };
     },
     methods: {
@@ -33,6 +35,8 @@
         if (!this.query.trim()) {
           return; // Prevent sending empty queries
         }
+        this.loading = true; // Start loading animation
+  
         // Add user message to chat history
         this.messages.push({ type: 'user', text: this.query });
   
@@ -49,6 +53,8 @@
           }
           // Add error message to chat history
           this.messages.push({ type: 'bot', text: errorMessage });
+        } finally {
+          this.loading = false; // Stop loading animation
         }
       }
     }
@@ -56,6 +62,27 @@
   </script>
   
   <style scoped>
+  /* Add scoped component styles */
+  
+  .loading-animation {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 123, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: #007bff;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
   /* Add scoped component styles */
   .chatbot-container {
     display: flex;
